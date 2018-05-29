@@ -28,6 +28,9 @@ public class Main
             System.out.println("If in program: "+myVisitor.getIfs());
             System.out.println("Methods in program: "+myVisitor.getMethod());
             System.out.println("Arrow Functions in program: "+ myVisitor.getArrow());
+            System.out.println("var declaration in program: "+myVisitor.getVar());
+            System.out.println("For's in program: "+myVisitor.getForS());
+            System.out.println("While's in program: "+ myVisitor.getWhileS());
             //ParseTree tree = parser.program();
             //System.out.println(tree.toStringTree(parser));
 
