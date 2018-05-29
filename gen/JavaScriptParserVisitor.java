@@ -16,6 +16,24 @@ public interface JavaScriptParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTag(JavaScriptParser.TagContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JavaScriptParser#attr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAttr(JavaScriptParser.AttrContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavaScriptParser#attrlong}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAttrlong(JavaScriptParser.AttrlongContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JavaScriptParser#importReact}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitImportReact(JavaScriptParser.ImportReactContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link JavaScriptParser#program}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -627,6 +645,13 @@ public interface JavaScriptParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMemberIndexExpression(JavaScriptParser.MemberIndexExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TagExpression}
+	 * labeled alternative in {@link JavaScriptParser#singleExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTagExpression(JavaScriptParser.TagExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code IdentifierExpression}
 	 * labeled alternative in {@link JavaScriptParser#singleExpression}.

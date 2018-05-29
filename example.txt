@@ -1,32 +1,124 @@
-"use strict";
-//------------------------------------------------------------------------------
-// Expression Bodies
-// More expressive closure syntax.
-// http://es6-features.org/#ExpressionBodies
-//------------------------------------------------------------------------------
+import { connect } from 'react-redux';
+import { SIGNUP_CONTEXT } from '../../constants/app';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { setEmail, setPassword, signUpFirebase } from '../../actions/signUpActions'
+import { ROUTE_LOGIN } from '../../constants/routes';
+import { browserHistory } from 'react-router';
+import './SignUp.scss';
 
-odds  = evens.map(v => v + 1)
-pairs = evens.map(v => ({ even: v, odd: v + 1 }))
-nums  = evens.map((v, i) => v + i)
+export const signUpConfig = {
+  labels: {
+    email: 'Email',
+    password: 'Password',
+    form: 'Register a new user:',
+    titlePage: 'DELIVERY UNIT',
+    subTitlePage: 'CAPABILITY TOOL',
+    button: 'REGISTER',
+    login: 'Do you have an account?',
+    mail: '@endava.com'
+  },
+  validations: {
+    required: 'This field is required',
+    email: 'Email is not valid'
+  }
+}
 
-//------------------------------------------------------------------------------
-// Statement Bodies
-// More expressive closure syntax.
-// http://es6-features.org/#StatementBodies
-//------------------------------------------------------------------------------
+export class SignUp extends Component {
 
-nums.forEach(v => {
-   if (v % 5 === 0)
-       fives.push(v)
-})
+  handleSubmit = () => {
+    const userData = { email: this.props.email + signUpConfig.labels.mail, password: this.props.password };
+    this.props.signUpFirebase(userData, () => {
+      this.props.setEmail('');
+      this.props.setPassword('');
+      browserHistory.push(ROUTE_LOGIN)
+    })
 
-//------------------------------------------------------------------------------
-// Lexical this
-// More intuitive handling of current object context.
-// http://es6-features.org/#Lexicalthis
-//------------------------------------------------------------------------------
+  }
 
-this.nums.forEach((v) => {
-    if (v % 5 === 0)
-        this.fives.push(v)
-})
+  onChange = (event) => {
+    const type = event.target.name;
+
+    if (type === 'email') {
+      this.props.setEmail(event.target.value);
+    }
+
+    if (type === 'password') {
+      this.props.setPassword(event.target.value)
+    }
+
+  }
+
+  render() {
+    const { email, password } = this.props
+    return (
+      <div className='du-signup'>
+        <div className='du-signup-nav'></div>
+        <h1 className='du-signup-title'>{signUpConfig.labels.titlePage}</h1>
+        <h1 className='du-signup-subtitle'>{signUpConfig.labels.subTitlePage}</h1>
+        <h4>{signUpConfig.labels.form}</h4>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <ValidatorForm ref='form' autoComplete='off' className='du-signup-form' onSubmit={this.handleSubmit}>
+            <TextValidator
+              floatingLabelText={signUpConfig.labels.email}
+              onChange={this.onChange}
+              name='email'
+              type='text'
+              className='du-signup-textmail'
+              value={email}
+              validators={['required']}
+              errorMessages={[signUpConfig.validations.required]}
+            />
+            <TextField
+              className='du-signup-endava'
+              disabled={true}
+              hintText={signUpConfig.labels.mail}
+              underlineShow={false}
+            />
+            <TextValidator
+              floatingLabelText={signUpConfig.labels.password}
+              onChange={this.onChange}
+              name='password'
+              type='password'
+              className='du-signup-password'
+              fullWidth={true}
+              value={password}
+              validators={['required']}
+              errorMessages={[signUpConfig.validations.required]}
+            />
+            <Message targetComponent={SIGNUP_CONTEXT} />
+            <RaisedButton className='du-signup-submit' type='submit' label={signUpConfig.labels.button} fullWidth={true} primary={true} />
+            <p className='du-signup-title'>{signUpConfig.labels.login}</p>
+            <RaisedButton label="Login" primary={true} fullWidth={true} onClick={() => browserHistory.push(ROUTE_LOGIN)} />
+          </ValidatorForm>
+        </MuiThemeProvider>
+      </div>
+    );
+  }
+}
+
+SignUp.propTypes = {
+  email: PropTypes.string,
+  password: PropTypes.string.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
+  signUpFirebase: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => {
+  const signUp = state.get('signUp');
+  return {
+    email: signUp.email,
+    password: signUp.password
+  }
+}
+
+const actionCreators = {
+  setEmail,
+  setPassword,
+  signUpFirebase
+}
+
+export default connect(
+  mapStateToProps,
+  actionCreators
+)(SignUp)

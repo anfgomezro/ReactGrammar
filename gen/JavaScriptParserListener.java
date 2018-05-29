@@ -17,6 +17,36 @@ public interface JavaScriptParserListener extends ParseTreeListener {
 	 */
 	void exitTag(JavaScriptParser.TagContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JavaScriptParser#attr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttr(JavaScriptParser.AttrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaScriptParser#attr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttr(JavaScriptParser.AttrContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavaScriptParser#attrlong}.
+	 * @param ctx the parse tree
+	 */
+	void enterAttrlong(JavaScriptParser.AttrlongContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaScriptParser#attrlong}.
+	 * @param ctx the parse tree
+	 */
+	void exitAttrlong(JavaScriptParser.AttrlongContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JavaScriptParser#importReact}.
+	 * @param ctx the parse tree
+	 */
+	void enterImportReact(JavaScriptParser.ImportReactContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaScriptParser#importReact}.
+	 * @param ctx the parse tree
+	 */
+	void exitImportReact(JavaScriptParser.ImportReactContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JavaScriptParser#program}.
 	 * @param ctx the parse tree
 	 */
@@ -1052,6 +1082,18 @@ public interface JavaScriptParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMemberIndexExpression(JavaScriptParser.MemberIndexExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TagExpression}
+	 * labeled alternative in {@link JavaScriptParser#singleExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterTagExpression(JavaScriptParser.TagExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TagExpression}
+	 * labeled alternative in {@link JavaScriptParser#singleExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitTagExpression(JavaScriptParser.TagExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code IdentifierExpression}
 	 * labeled alternative in {@link JavaScriptParser#singleExpression}.

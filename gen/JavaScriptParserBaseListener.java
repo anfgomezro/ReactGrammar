@@ -27,6 +27,42 @@ public class JavaScriptParserBaseListener implements JavaScriptParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAttr(JavaScriptParser.AttrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAttr(JavaScriptParser.AttrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAttrlong(JavaScriptParser.AttrlongContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAttrlong(JavaScriptParser.AttrlongContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterImportReact(JavaScriptParser.ImportReactContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitImportReact(JavaScriptParser.ImportReactContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterProgram(JavaScriptParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1150,6 +1186,18 @@ public class JavaScriptParserBaseListener implements JavaScriptParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMemberIndexExpression(JavaScriptParser.MemberIndexExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTagExpression(JavaScriptParser.TagExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTagExpression(JavaScriptParser.TagExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

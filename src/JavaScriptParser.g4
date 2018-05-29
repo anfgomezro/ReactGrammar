@@ -35,7 +35,7 @@ options {
 
 //-----------------
 tag
-    : '<' identifierName  attr* '>' (tag |'{' statement '}')* '<' '/' identifierName '>' eos
+    : '<' identifierName  attr* '>' (tag |'{' statement '}' | identifierName )* '<' '/' identifierName '>' eos
     | '<'  identifierName attr* '/' '>' eos;
 
 attr
@@ -203,6 +203,7 @@ classTail
 
 classElement
     : Static? methodDefinition
+    | singleExpression
     ;
 
 methodDefinition

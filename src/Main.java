@@ -21,11 +21,15 @@ public class Main
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             JavaScriptParser parser = new JavaScriptParser(tokens);
 
-            //JavaScriptParser.ProgramContext programContext = parser.program();
-            //MyVisitor myVisitor = new MyVisitor();
-            //myVisitor.visit(programContext);
-            ParseTree tree = parser.program();
-            System.out.println(tree.toStringTree(parser));
+            JavaScriptParser.ProgramContext programContext = parser.program();
+            MyVisitor myVisitor = new MyVisitor();
+            myVisitor.visit(programContext);
+            System.out.println("Tags in program: "+myVisitor.getTags());
+            System.out.println("If in program: "+myVisitor.getIfs());
+            System.out.println("Methods in program: "+myVisitor.getMethod());
+            System.out.println("Arrow Functions in program: "+ myVisitor.getArrow());
+            //ParseTree tree = parser.program();
+            //System.out.println(tree.toStringTree(parser));
 
             System.out.println("El analisis sintactico ha finalizado correctamente.");
 
