@@ -35,12 +35,13 @@ options {
 
 //-----------------
 tag
-    : '<' identifierName  attr* '>' (tag |'{' statement '}' | identifierName )* '<' '/' identifierName '>' eos
-    | '<'  identifierName attr* '/' '>' eos;
+    : '<' identifierName ('.'identifierName)?  attr* '>' (tag |'{' statement '}' | identifierName )* '<' '/' identifierName('.'identifierName)? '>' eos
+    | '<'  identifierName('.'identifierName)? attr* '/' '>' eos;
 
 attr
     : attrlong
     | '{' statement '}'
+    | identifierName
     ;
 
 attrlong
@@ -97,7 +98,7 @@ variableDeclarationList
     ;
 
 variableDeclaration
-    : (Identifier | arrayLiteral | objectLiteral) ('=' singleExpression)? // ECMAScript 6: Array & Object Matching
+    : (Identifier | arrayLiteral | objectLiteral |) ('=' singleExpression)? // ECMAScript 6: Array & Object Matching
     ;
 
 emptyStatement
